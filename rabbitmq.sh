@@ -9,7 +9,7 @@
 USERID=$(id -u)
 LOG_FOLDER="/var/log/shell_script"
 LOG_FILE="$LOG_FOLDER/$0.log"
-SCRIPT_DIR=$pwd
+SCRIPT_DIR=$PWD
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
