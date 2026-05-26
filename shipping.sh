@@ -68,7 +68,7 @@ VALIDATE $? "installing maven package"
 mv target/shipping-1.0.jar shipping.jar 
 VALIDATE $? "Moving and Renaming shipping"
 
-cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service
+cp /shipping.service /etc/systemd/system/shipping.service
 VALIDATE $? "Created systemctl service"
 
 dnf install mysql -y  &>>$LOG_FILE
