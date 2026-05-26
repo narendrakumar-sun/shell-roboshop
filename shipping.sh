@@ -84,6 +84,7 @@ else
    echo -e " Data already loaded $Y SKIPPING $N"
 fi
 
+systemctl daemon-reload
 systemctl enable shipping &>>$LOG_FILE
 systemctl start shipping
 VALIDATE $? "Enabled and started shipping"
