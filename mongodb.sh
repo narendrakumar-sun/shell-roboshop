@@ -39,7 +39,7 @@ VALIDATE $? " Coping mongo repo"
 dnf install mongodb-org -y &>>$LOG_FILE
 VALIDATE $? "install mongodb-wserver"
 
-systemctl enable mongod &>>$LOGS_FILE
+systemctl enable mongod &>>$LOG_FILE
 VALIDATE $? "Enable MongoDB"
 
 systemctl start mongod
