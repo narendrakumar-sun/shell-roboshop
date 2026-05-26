@@ -59,7 +59,7 @@ VALIDATE $? "Moving to app directory"
 rm -rf /app/*
 VALIDATE $? "Removing existing code"
 
-unzip /tmp/shipping.zip &>>$LOGS_FILE
+unzip /tmp/shipping.zip &>>$LOG_FILE
 VALIDATE $? "Uzip shipping code"
 
 mvn clean package
@@ -81,6 +81,6 @@ else
    echo -e " Data already loaded $Y SKIPPING $N"
 fi
 
-systemctl enable shipping &>>$LOGS_FILE
+systemctl enable shipping &>>$LOG_FILE
 systemctl start shipping
 VALIDATE $? "Enabled and started shipping"
