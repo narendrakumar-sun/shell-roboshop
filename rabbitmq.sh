@@ -30,7 +30,7 @@ VALIDATE(){
     fi
 }
 
-cp $SCRIPT_DIR/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>>$LOG_FILE
+cp $SCRIPT_DIR/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 VALIDATE $? "Copy Rabbitmq server"
 
 dnf install rabbitmq-server -y &>>$LOG_FILE
