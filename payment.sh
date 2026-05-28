@@ -38,7 +38,7 @@ VALIDATE $? "python installed"
 id roboshop &>>$LOG_FILE
 
 if [ $? -ne 0 ]; then
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOGS_FILE
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
     VALIDATE $? "Creating system user"
 else
     echo -e "Roboshop user already exist ... $Y SKIPPING $N"
@@ -50,7 +50,7 @@ VALIDATE $? " Creating app directory"
 mkdir /app 
 VALIDATE $? " Creating app directory"
 
-curl -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip &>>$LOF_FILE
+curl -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip &>>$LOG_FILE
 VALIDATE $? "Dowload payment code"
 
 cd /app
@@ -63,6 +63,6 @@ unzip /tmp/payment.zip
 VALIDATE $? "unzip payment code"
 
 systemctl daemon-reload
-systemctl enable payment &>>$LOF_FILE
+systemctl enable payment &>>$LOG_FILE
 systemctl start payment
 VALIDATE $? "Enable and start payment"
