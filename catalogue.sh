@@ -32,7 +32,7 @@ VALIDATE(){
     fi
 }
 
-dnf module disable nodejs -y &>>$LOGS_FILE
+dnf module disable nodejs -y &>>$LOG_FILE
 VALIDATE $? "Disabling NodeJS Default version"
 
 dnf module enable nodejs:20 -y &>>$LOG_FILE
@@ -44,7 +44,7 @@ VALIDATE $? "Installing Nodejs"
 id roboshop &>>$LOG_FILE
 
 if [ $? -ne 0 ]; then
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOGS_FILE
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
     VALIDATE $? "Creating system user"
 else
     echo -e "Roboshop user already exist ... $Y SKIPPING $N"
@@ -53,7 +53,7 @@ fi
 mkdir /app 
 VALIDATE $? " Creating app directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOF_FILE
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOG_FILE
 VALIDATE $? "Dowload catalogue code"
 
 cd /app
@@ -77,7 +77,7 @@ systemctl start catalogue
 VALIDATE $? "Enable and strt catalogue"
 
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
-dnf install mongodb-mongosh -y &>>$LOGS_FILE
+dnf install mongodb-mongosh -y &>>$LOG_FILE
 
 INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 
