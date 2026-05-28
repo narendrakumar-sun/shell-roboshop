@@ -13,7 +13,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-SCRIPT_DIR=$pwd
+SCRIPT_DIR=$PWD
 MONGODB_HOST="mongodb.naren83.online"
 MYSQL_HOST="mysql.naren83.online"
 
@@ -68,7 +68,7 @@ VALIDATE $? "installing maven package"
 mv target/shipping-1.0.jar shipping.jar 
 VALIDATE $? "Moving and Renaming shipping"
 
-cp /shipping.service /etc/systemd/system/shipping.service
+cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service
 VALIDATE $? "Created systemctl service"
 
 dnf install mysql -y  &>>$LOG_FILE
