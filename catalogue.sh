@@ -13,7 +13,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-SCRIPT_DIR=$pwd
+SCRIPT_DIR=$PWD
 MONGODB_HOST="mongodb.naren83.online"
 
 if [ $USERID -ne 0 ]; then
