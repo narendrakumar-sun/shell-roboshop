@@ -59,6 +59,11 @@ VALIDATE $? "Removing existing code"
 unzip /tmp/payment.zip
 VALIDATE $? "unzip payment code"
 
+pip3 install -r requirements.txt &>>$LOG_FILE
+VALIDATE $? "Install pip "
+
+cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service 
+
 systemctl daemon-reload
 systemctl enable payment &>>$LOG_FILE
 systemctl start payment
