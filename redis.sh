@@ -37,8 +37,8 @@ VALIDATE $? "Enable Redis"
 dnf install redis -y &>>$LOF_FILE
 VALIDATE $? "Installing redis"
 
-sudo sed -i 's/^bind .*/bind 0.0.0.0/' /etc/redis/redis.conf
-sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis/redis.conf
+
+sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
 VALIDATE $? " Allowing remote connection"
 
 systemctl enable redis &>>$LOF_FILE
